@@ -1,4 +1,4 @@
-# Note-Keeping Web Application
+# Note Keeping Web Application
 
 This project is a note-keeping web application that allows users to register, login, and perform CRUD operations on their notes. It includes an admin panel for user management, authentication, and note manipulation.
 
