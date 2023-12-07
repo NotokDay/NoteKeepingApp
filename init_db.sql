@@ -1,0 +1,22 @@
+CREATE DATABASE IF NOT EXISTS webapp;
+USE webapp;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL, 
+    isadmin BOOLEAN DEFAULT 0
+);
+INSERT INTO users VALUES (DEFAULT, 'admin', 'admin', 'admin@localhost', '$2b$10$A101zV02BtdYXjK6AziYweusN2.lhuYcUc2VufEfxt/FjmqxnAjW2', 1);
+
+CREATE TABLE IF NOT EXISTS notes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT, 
+    title VARCHAR(255),
+    content TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);

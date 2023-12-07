@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>Notes</title>
+    <style>
+        body {
+            background: #fff;
+            font-family: 'PT Sans', sans-serif;
+        }
+        .note-block {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .note-block:hover {
+            background-color: #da5767;
+            color: white;
+        }
+        .note-block h4, .note-block p {
+            margin: 0;
+            color: #333; /* Default text color */
+        }
+        .btn-custom {
+            background: #da5767;
+            border: 2px solid #da5767;
+            color: white;
+            padding: 0.6rem 1.2rem;
+        }
+        .btn-custom:hover {
+            background-color: #df8c96;
+            border-color: #df8c96;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <h2 class="card-title text-center">Welcome, <%= firstname %>!</h2>
+                    
+                    <div class="card-body py-md-4">
+                        <% if (status === 'success') { %>
+                            <p style="color: green;"><%= message %></p>
+                        <% } else if (status === 'error') { %>
+                            <p style="color: red;"><%= message %></p>
+                        <% } %>
+
+                        <% if (notes && notes.length > 0) { %>
+                            <% notes.forEach(function(note) { %>
+                                <div class="note-block" onclick="location.href='/notes/<%= note.id %>'">
+                                    <h4><%= note.title %></h4>
+                                    <p><%= note.content.length > 100 ? note.content.substring(0, 100) + '...' : note.content %></p>
+                                </div>
+                            <% }); %>
+                        <% } else { %>
+                            <p>No notes available.</p>
+                        <% } %>
+                    </div>
+                    <div class="button-container">
+                    </div>
+                </div><br>
+                <a href="/notes/new" class="btn btn-custom">New Note</a>
+                <a href="/users/logout" class="btn btn-custom">Logout</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

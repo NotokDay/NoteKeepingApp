@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>Edit Note</title>
+    <style>
+        body {
+            background: #fff;
+            font-family: 'PT Sans', sans-serif;
+        }
+        .form-container {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .btn-custom {
+            background: #da5767;
+            border: 2px solid #da5767;
+            color: white;
+            padding: 0.6rem 1.2rem;
+        }
+        .btn-custom:hover {
+            background-color: #df8c96;
+            border-color: #df8c96;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="form-container">
+                    <h2>Edit Note</h2>
+                    <% if (status === 'success') { %>
+                        <p style="color: green;"><%= message %></p>
+                    <% } else if (status === 'error') { %>
+                        <p style="color: red;"><%= message %></p>
+                    <% } %>
+                    <% if (note) { %>   
+                    <form action="/notes/edit/<%= note.id %>" method="POST">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" value="<%= note.title %>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Content</label>
+                            <textarea class="form-control" id="content" name="content" rows="5" required><%= note.content %></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-custom">Update</button><% } %>
+                        <a href="/notes" class="btn btn-custom">Back</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
