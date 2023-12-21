@@ -56,4 +56,4 @@ nodemon app.js
 
 ## Other
 
-The init_db script generates default admin user with `admin123` password. You can access admin panel under /admin and change the default password. 
+The init_db script generates default admin user with `admin123` password. You can access admin panel under /admin.
